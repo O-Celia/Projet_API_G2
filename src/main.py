@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from src.database import Base, engine
 from src.models.models import Client, Commande, Detail
 
-app = FastAPI
+app = FastAPI()
 
 Base.metadata.create_all(engine)
 

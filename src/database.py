@@ -2,10 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
+# python-dotenv
+
 # connexion a la base de donnée et déclaration de la base avec sql alchemy
 
 # url de connexion de la base
-SQLALCHEMY_DATABASE_URL = "mysql://root:@localhost/fromagerie_com"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root@localhost/fromagerie_com"
 
 # permet de définir les paramètre de connexion à la base
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
