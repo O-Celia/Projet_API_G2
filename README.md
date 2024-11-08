@@ -23,6 +23,7 @@ source .venv\bin\activate
 Avec Windows: 
 ```code
 .venv\Scripts\activate
+```
 
 **Sortir de l'environnement virtuel:**
 
