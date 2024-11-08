@@ -2,9 +2,9 @@
 
 ## Membres
 
-AICHOUNE Wafa \n
-GUILLAIN Claire \n
-OUEDRAOGO Célia \n
+AICHOUNE Wafa <br/>
+GUILLAIN Claire <br/>
+OUEDRAOGO Célia <br/>
 ZARDI Yakine
 
 ## Configuration
