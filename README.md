@@ -2,9 +2,9 @@
 
 ## Membres
 
-AICHOUNE Wafa
-GUILLAIN Claire
-OUEDRAOGO Célia
+AICHOUNE Wafa \n
+GUILLAIN Claire \n
+OUEDRAOGO Célia \n
 ZARDI Yakine
 
 ## Configuration
@@ -35,3 +35,4 @@ deactivate
 ```code
 pip install -r requirements.txt
 ```
+3. Créer les variables d'environnement
