@@ -25,7 +25,7 @@ Avec Windows:
 .venv\Scripts\activate
 ```
 
-**Sortir de l'environnement virtuel:**
+**Pour sortir de l'environnement virtuel:**
 
 ```code
 deactivate
