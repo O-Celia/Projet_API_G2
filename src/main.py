@@ -9,19 +9,19 @@ Base.metadata.create_all(engine)
 
 @app.get("/")
 def home():
-    return {}
+    return {"API démarrée"}
 
 
 @app.get("/client/")
 def clients():
-    return {}
+    return {"Accès à la table Client"}
 
 
 @app.get("/client/commande/")
 def adresses_clients():
-    return {}
+    return {"Accès à la table Commande"}
 
 
 @app.get("/client/commande/detail/")
 def communes_clients():
-    return {}
+    return {"Accès à la table Détail_Commande"}
