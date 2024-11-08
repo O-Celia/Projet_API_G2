@@ -54,9 +54,9 @@ pip install -r requirements.txt
 ```
 3. Créer les variables d'environnement
 
-1. Créer un fichier .env
-2. Créer une variable Utilisateur et renseigner le nom d'utilisateur utilisé pour se connecter au serveur MySQL
-3. Créer une variable Password et renseigner le nom d'utilisateur utilisé pour se connecter au serveur MySQL
+- Créer un fichier .env
+- Créer une variable Utilisateur et renseigner le nom d'utilisateur utilisé pour se connecter au serveur MySQL
+- Créer une variable Password et renseigner le nom d'utilisateur utilisé pour se connecter au serveur MySQL
 
 ## Utilisation
 
