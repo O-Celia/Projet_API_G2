@@ -8,18 +8,14 @@ def get_clients(db: Session):
 
 def create_client(client: ClientCreateSchema, db: Session):
     # Transforme le schema en modèle SQLAlchemy
-    new_client = Client(genrecli=client.genrecli,
-                        nomcli=client.nomcli,
-                        prenomcli=client.prenomcli,
-                        adresse1cli=client.adresse1cli,
-                        adresse2cli=client.adresse2cli,
-                        adresse3cli=client.adresse3cli,
-                        telcli=client.telcli,
-                        emailcli=client.emailcli,
-                        portcli=client.portcli,
-                        newsletter=client.newsletter)  # **client.model_dump() pour mettre le client en dict au cas où ça ne passe pas
-    
+    new_client = Client(**client.model_dump())  # **client.model_dump() pour mettre le client en dict au cas où ça ne passe pas    
     db.add(new_client)
     db.commit()
     db.refresh(new_client)
     return new_client
+
+def update_client():
+    pass
+
+def delete_client():
+    pass
