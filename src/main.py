@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from src.database import Base, engine
-from src.models.models import Client, Commande, Detail
 from src.router.client_router import router_client
 
-app = FastAPI()
+app = FastAPI(
+    title="Intranet DIGICHEESE", description="Nouvelle API Digicheese", version="0.0.1"
+)
+# Ajouter le routeur du client
 app.include_router(router_client)
 
 Base.metadata.create_all(engine)
@@ -14,14 +16,9 @@ def home():
     return {"API démarrée"}
 
 
-# @app.get("/client/")
-# def clients():
-#     return {"Accès à la table Client"}
-
-
-# @app.get("/client/commande/")
-# def commandes_clients():
-#     return {"Accès à la table Commande"}
+@app.get("/client/commande/")
+def adresses_clients():
+    return {"Accès à la table Commande"}
 
 
 # @app.get("/client/commande/detail/")
