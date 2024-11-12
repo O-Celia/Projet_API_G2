@@ -17,16 +17,8 @@ DB_CONNECTOR = os.getenv("connector")
 # connexion a la base de donnée et déclaration de la base avec sql alchemy
 # url de connexion de la base
 
-# SQLALCHEMY_DATABASE_URL = (
-#    f"{DB_CONNECTOR}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
-# )
-SQLALCHEMY_DATABASE_URL = f"{DB_CONNECTOR}://{DB_USER}@{DB_HOST}/{DB_NAME}"
-
-# SQLALCHEMY_DATABASE_URL = "mysql://root:@localhost/fromagerie_com"
-#                         # connector : mysql / mysql+pymysql
-#                         # utilisateur : root
-#                         # password : root
-#                         # base de données : fromagerie_com
+# SQLALCHEMY_DATABASE_URL = (f"{DB_CONNECTOR}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}")
+SQLALCHEMY_DATABASE_URL = f"{DB_CONNECTOR}://{DB_USER}@{DB_HOST}/fromagerie_com"
 
 # permet de définir les paramètre de connexion à la base
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
