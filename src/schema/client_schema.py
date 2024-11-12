@@ -4,10 +4,6 @@ from pydantic import BaseModel
 class ClientBaseSchema(BaseModel):
     prenomcli: str
     nomcli: str
-
-
-class ClientInDBSchema(ClientBaseSchema):
-    codcli: int
     genrecli: str
     adresse1cli: str
     adresse2cli: str
@@ -17,3 +13,7 @@ class ClientInDBSchema(ClientBaseSchema):
     emailcli: str
     portcli: str
     newsletter: int
+
+
+class ClientInDBSchema(ClientBaseSchema):
+    codcli: int

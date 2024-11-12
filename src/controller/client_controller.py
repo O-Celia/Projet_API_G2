@@ -10,7 +10,7 @@ def get_clients(db: Session):
 
 
 def create_client(db: Session, client: ClientBaseSchema):
-    new_client = Client(prenom=client.prenomcli, nom=client.nomcli)
+    new_client = Client(prenomcli=client.prenomcli, nomcli=client.nomcli)
     db.add(new_client)
     db.commit()
     db.refresh(new_client)
