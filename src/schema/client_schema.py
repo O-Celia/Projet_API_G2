@@ -1,8 +1,23 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class ClientBaseSchema(BaseModel):
-    prenom: str
-    nom: str
+    genrecli: str
+    nomcli: str
+    prenomcli: str
+    adresse1cli: Optional[str] = None
+    adresse2cli: Optional[str] = None
+    adresse3cli: Optional[str] = None
+    telcli: Optional[str] = None
+    emailcli: Optional[str] = None
+    portcli: Optional[str] = None
+    newsletter: Optional[int] = None
+
+class ClientCreateSchema(ClientBaseSchema):
+    pass
     
 class ClientInDBSchema(ClientBaseSchema):
-    id: int
+    codcli: int
+
+    class Config():
+        from_attributes = True
