@@ -2,7 +2,11 @@ from fastapi import FastAPI
 from src.database import Base, engine
 from src.models.models import Client, Commande, Detail
 
-app = FastAPI()
+app = FastAPI(
+    title="Intranet DIGICHEESE",
+    description="Nouvelle API",
+    version="0.0.1"
+)
 
 Base.metadata.create_all(engine)
 

@@ -22,7 +22,7 @@ SQLALCHEMY_DATABASE_URL = f"{DB_CONNECTOR}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # déclaration d'une base qui permet après de créer un modele et de mapper avec sql alchemy
-base = declarative_base()
+Base = declarative_base()
 
 # creation d'une session
 session_locale = sessionmaker(bind=engine, autoflush=False, autocommit=False)
