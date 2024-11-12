@@ -74,3 +74,6 @@ Pour utiliser l'application mise en place:
 ```code
 uvicorn src.main:app --reload
 ```
+
+Accéder à la page : localhost:8000
+Affichage swagger : localhost:8000/docs

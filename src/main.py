@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from src.database import Base, engine
 from src.models.models import Client, Commande, Detail
+from src.router.client_router import router_client
 
 app = FastAPI()
+app.include_router(router_client)
 
 Base.metadata.create_all(engine)
 
@@ -18,10 +20,10 @@ def clients():
 
 
 @app.get("/client/commande/")
-def adresses_clients():
+def commandes_clients():
     return {"Accès à la table Commande"}
 
 
 @app.get("/client/commande/detail/")
-def communes_clients():
+def detail_commandes_clients():
     return {"Accès à la table Détail_Commande"}
