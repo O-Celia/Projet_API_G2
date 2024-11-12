@@ -47,16 +47,22 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 ```code
 deactivate
 ```
+
 2. Installer les packages Python nécessaires
 
 ```code
 pip install -r requirements.txt
 ```
+
 3. Créer les variables d'environnement
 
 - Créer un fichier .env
 - Créer une variable Utilisateur et renseigner le nom d'utilisateur utilisé pour se connecter au serveur MySQL
 - Créer une variable Password et renseigner le nom d'utilisateur utilisé pour se connecter au serveur MySQL
+
+4. Créer la base de données
+
+Lancer le fichier create_db.sql sur le serveur MySQL
 
 ## Utilisation
 
