@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src.schema.client_schema import ClientCreateSchema
-from src.models.models import Client
+from src.models.models import Client, Commande, Detail
 
 
 def get_clients(db: Session):
