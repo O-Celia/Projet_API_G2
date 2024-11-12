@@ -16,9 +16,9 @@ def home():
     return {"API démarrée"}
 
 
-@app.get("/client/commande/")
-def adresses_clients():
-    return {"Accès à la table Commande"}
+# @app.get("/client/commande/")
+# def adresses_clients():
+#     return {"Accès à la table Commande"}
 
 
 # @app.get("/client/commande/detail/")
