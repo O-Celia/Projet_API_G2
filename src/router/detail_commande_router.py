@@ -8,7 +8,7 @@ from src.schema.detail_commande_schema import (
     DetailUpdateSchema,
 )
 
-router_detail = APIRouter(prefix="/detail", tags=["detail"])
+router_detail = APIRouter(prefix="/detail", tags=["Details commande"])
 
 
 @router_detail.get("/")
