@@ -13,7 +13,7 @@ Base.metadata.create_all(engine)
 
 @app.get("/")
 def home():
-    return {"API démarrée"}
+    return {"message": "API démarrée"}
 
 
 # @app.get("/client/commande/")

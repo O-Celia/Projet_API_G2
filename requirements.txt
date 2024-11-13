@@ -5,3 +5,7 @@ uvicorn
 dotenv
 python-dotenv
 pydantic
+unittest
+sys
+os
+httpx
