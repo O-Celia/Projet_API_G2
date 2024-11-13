@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src.schema.client_schema import ClientCreateSchema, ClientUpdateSchema
-from src.models.models import Client, Commande, Detail
+from src.models.models import Client
 from fastapi import HTTPException, status
 from sqlalchemy.exc import NoResultFound
 
