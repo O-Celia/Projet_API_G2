@@ -10,11 +10,18 @@ from src.schema.commande_schema import CommandeBaseSchema, CommandeInDBSchema
 
 router_commande = APIRouter(prefix='/commande', tags=["Commande"])
 
-@router_commande.get('/') #, response_model=CommandeInDBSchema
-def get_detail(db: Session = Depends(get_db)):
-    return controller.get_detail(db)
+@router_commande.get('/')
+def get_commande(db: Session = Depends(get_db)):
+    return controller.get_commande(db)
 
-@router_commande.post('/') #, response_model=CommandeInDBSchema, status_code=201
+@router_commande.post('/')
 def create_commande(commande: CommandeCreateSchema, db: Session = Depends(get_db)):
     return controller.create_commande(commande, db)
 
+@router_commande.put("/{codcde}")
+def update_commande(codcde: int, commande: CommandeUpdateSchema, db: Session = Depends(get_db)):
+    return controller.update_commande(codcde, commande, db)
+
+@router_commande.delete('/{codcde}')
+def delete_commande(codcde: int, db: Session = Depends(get_db)):
+    return controller.delete_commande(codcde, db)
