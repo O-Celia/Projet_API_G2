@@ -7,7 +7,7 @@ import unittest
 from fastapi.testclient import TestClient
 from main import app
 from typing import List, Dict
-
+import time
 from sqlalchemy.orm import Session
 
 # @app.get("/")
@@ -48,6 +48,12 @@ class TestClientRoute(unittest.TestCase):
                 self.assertEqual(set(clients.keys()), clés)
         else:
             self.assertEqual(reponse.json(), [])
+
+    def test_time_get_client(self):
+        start_time = time.time()
+        self.client.get("/clients")
+        end_time = time.time()
+        self.assertTrue(end_time - start_time < 1)
 
     def test_route_create_client(self):
         client_data = {
