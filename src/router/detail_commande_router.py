@@ -13,3 +13,10 @@ def get_detail(db: Session = Depends(get_db)):
 @router_detail.post('/')
 def create_details(detail: DetailBaseSchema, db: Session = Depends(get_db)):
     return detail
+@router_detail.put("/{id}")
+def update_detail(id: int, detail: DetailUpdateSchema, db: Session = Depends(get_db)):
+    return controller.update_detail(id, detail, db)
+
+@router_detail.delete('/{id}')
+def delete_detail(id: int, db: Session = Depends(get_db)):
+    return controller.delete_detail(id, db)
