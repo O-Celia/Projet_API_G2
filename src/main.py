@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from src.database import Base, engine
 from src.router.client_router import router_client
+from src.models.models import Client, Commande, Detail, Objet, DetailObjet
 
 app = FastAPI(
     title="Intranet DIGICHEESE", description="Nouvelle API Digicheese", version="0.0.1"

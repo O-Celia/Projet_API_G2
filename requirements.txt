@@ -2,10 +2,10 @@ fastapi
 sqlalchemy
 pymysql
 uvicorn
-dotenv
 python-dotenv
 pydantic
 unittest
 sys
 os
 httpx
+flask
