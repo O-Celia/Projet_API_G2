@@ -9,10 +9,12 @@ class DetailBaseSchema(BaseModel):
     
 class DetailCreateSchema(DetailBaseSchema):
     pass
-    
+ 
+class DetailUpdateSchema(DetailBaseSchema):
+    pass
+   
 class DetailInDBSchema(DetailBaseSchema):
     id: int
-    
     
     
     class Config():
