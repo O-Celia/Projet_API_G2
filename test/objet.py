@@ -15,140 +15,136 @@ from sqlalchemy.orm import Session
 #     return {"message": "API démarrée"}
 
 
-class TestClientRoute(unittest.TestCase):
+class TestObjetRoute(unittest.TestCase):
     def setUp(self):  # équivalent au __init__.py
-        self.client = TestClient(app)
+        self.objet = TestClient(app)
 
     def test_route_home(self):
-        reponse = self.client.get("/")
+        reponse = self.objet.get("/")
         self.assertEqual(reponse.status_code, 200)  # reussite
         self.assertEqual(reponse.json(), {"message": "API démarrée"})  # bon le json
 
-    def test_route_get_client(self):
-        reponse = self.client.get("/client")
+    def test_route_get_objet(self):
+        reponse = self.objet.get("/objet")
         self.assertEqual(reponse.status_code, 200)
         self.assertIsInstance(reponse.json(), List)
         clés = {
-            "codcli",
-            "genrecli",
-            "nomcli",
-            "prenomcli",
-            "adresse1cli",
-            "adresse2cli",
-            "adresse3cli",
-            "telcli",
-            "emailcli",
-            "portcli",
-            "newsletter",
+            "libobj",
+            "tailleobj",
+            "puobj",
+            "poidsobj",
+            "indispobj",
+            "o_imp",
+            "o_aff",
+            "o_cartp",
+            "points",
+            "o_ordre_aff",
+            "codobj",
         }
 
         if reponse.json():
-            for clients in reponse.json():
-                self.assertIsInstance(clients, Dict)
-                self.assertEqual(set(clients.keys()), clés)
+            for objets in reponse.json():
+                self.assertIsInstance(objets, Dict)
+                self.assertEqual(set(objets.keys()), clés)
         else:
             self.assertEqual(reponse.json(), [])
 
-    def test_time_get_client(self):
+    def test_time_get_objet(self):
         start_time = time.time()
-        self.client.get("/clients")
+        self.objet.get("/objet")
         end_time = time.time()
         self.assertTrue(end_time - start_time < 1)
 
-    def test_route_create_client(self):
-        client_data = {
-            "prenomcli": "Test",
-            "nomcli": "Client",
-            "genrecli": "F",
+    def test_route_create_objet(self):
+        objet_data = {
+            "libobj": "ordi",
         }
-        reponse = self.client.post("/client", json=client_data)
+        reponse = self.objet.post("/objet", json=objet_data)
         self.assertEqual(reponse.status_code, 200)
         self.assertIsInstance(reponse.json(), Dict)
         clés = {
-            "codcli",
-            "genrecli",
-            "nomcli",
-            "prenomcli",
-            "adresse1cli",
-            "adresse2cli",
-            "adresse3cli",
-            "telcli",
-            "emailcli",
-            "portcli",
-            "newsletter",
+            "libobj",
+            "tailleobj",
+            "puobj",
+            "poidsobj",
+            "indispobj",
+            "o_imp",
+            "o_aff",
+            "o_cartp",
+            "points",
+            "o_ordre_aff",
+            "codobj",
         }
         self.assertTrue(clés.issubset(reponse.json().keys()))
-        self.client.delete(f"/client/{reponse.json()['codcli']}")
+        self.objet.delete(f"/objet/{reponse.json()['codobj']}")
 
-    def test_charge_create_client(self):
-        nombre_clients_avant = len(self.client.get("/client").json())
+    def test_charge_create_objet(self):
+        nombre_objets_avant = len(self.objet.get("/objet").json())
         for _ in range(1000):
-            self.client.post(
-                "/client",
-                json={"prenomcli": "Test", "nomcli": "Client", "genrecli": "M"},
+            self.objet.post(
+                "/objet",
+                json={"libobj": "chargeur"},
             )
-        reponse_total = self.client.get("/client")
+        reponse_total = self.objet.get("/objet")
         self.assertEqual(reponse_total.status_code, 200)
-        nombre_clients_apres = len(reponse_total.json())
-        clients_ajoutes = nombre_clients_apres - nombre_clients_avant
-        self.assertEqual(clients_ajoutes, 1000)
+        nombre_objets_apres = len(reponse_total.json())
+        objets_ajoutes = nombre_objets_apres - nombre_objets_avant
+        self.assertEqual(objets_ajoutes, 1000)
 
-        clients = reponse_total.json()
-        for client in clients:
-            if client["prenomcli"] == "Test" and client["nomcli"] == "Client":
-                self.client.delete(f"/client/{client['codcli']}")
+        objets = reponse_total.json()
+        for objet in objets:
+            if objet["libobj"] == "chargeur":
+                self.objet.delete(f"/objet/{objet['codobj']}")
 
-    def test_route_delete_client(self):
+    def test_route_delete_objet(self):
 
-        reponse_ex = self.client.post(
-            "/client/", json={"prenomcli": "Test", "nomcli": "Client", "genrecli": "M"}
+        reponse_ex = self.objet.post(
+            "/objet/", json={"libobj": "souris", "tailleobj": 5}
         )
-        self.client_id = reponse_ex.json().get("codcli")
+        self.objet_id = reponse_ex.json().get("codobj")
 
-        reponse = self.client.delete(f"/client/{self.client_id}")
+        reponse = self.objet.delete(f"/objet/{self.objet_id}")
         self.assertEqual(reponse.status_code, 200)
 
-    def test_delete_client_not_found(self):
-        invalid_client_id = 9999999
-        reponse = self.client.delete(f"/client/{invalid_client_id}")
+    def test_delete_objet_not_found(self):
+        invalid_objet_id = 9999999
+        reponse = self.objet.delete(f"/objet/{invalid_objet_id}")
         self.assertEqual(reponse.status_code, 404)
 
-    def test_route_update_client(self):
-        reponse_ex = self.client.post(
-            "/client/", json={"prenomcli": "Test", "nomcli": "Client", "genrecli": "M"}
+    def test_route_update_objet(self):
+        reponse_ex = self.objet.post(
+            "/objet/", json={"libobj": "ecran", "tailleobj": 10}
         )
-        self.client_id = reponse_ex.json().get("codcli")
+        self.objet_id = reponse_ex.json().get("codobj")
 
-        update_data = {"prenomcli": "UpdateTest"}
+        update_data = {"libobj": "television"}
 
-        reponse_update = self.client.patch(
-            f"/client/{self.client_id}", json=update_data
-        )
+        reponse_update = self.objet.patch(f"/objet/{self.objet_id}", json=update_data)
         self.assertEqual(reponse_update.status_code, 200)
         self.assertIsInstance(reponse_update.json(), Dict)
 
         clés = {
-            "codcli",
-            "genrecli",
-            "nomcli",
-            "prenomcli",
-            "adresse1cli",
-            "adresse2cli",
-            "adresse3cli",
-            "telcli",
-            "emailcli",
-            "portcli",
-            "newsletter",
+            "libobj",
+            "tailleobj",
+            "puobj",
+            "poidsobj",
+            "indispobj",
+            "o_imp",
+            "o_aff",
+            "o_cartp",
+            "points",
+            "o_ordre_aff",
+            "codobj",
         }
         self.assertTrue(clés.issubset(reponse_update.json().keys()))
-        self.assertEqual(reponse_update.json().get("prenomcli"), "UpdateTest")
-        self.client.delete(f"/client/{reponse_update.json()['codcli']}")
+        self.assertEqual(reponse_update.json().get("libobj"), "television")
+        self.objet.delete(f"/objet/{reponse_update.json()['codobj']}")
 
-    def test_update_client_not_found(self):
-        invalid_client_id = 999999
-        update_data = {"prenomcli": "UpdateTestFail"}
-        reponse_update = self.client.patch(
-            f"/client/{invalid_client_id}", json=update_data
+    def test_update_objet_not_found(self):
+        invalid_objet_id = 999999
+        update_data = {"libobj": "televisionCassee"}
+        reponse_update = self.objet.patch(
+            f"/objet/{invalid_objet_id}", json=update_data
         )
         self.assertEqual(reponse_update.status_code, 404)
 
