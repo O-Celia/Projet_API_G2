@@ -77,3 +77,25 @@ uvicorn src.main:app --reload
 
 Accéder à la page : localhost:8000
 Affichage swagger : localhost:8000/docs
+
+## Tests
+
+Tests pour la route Client:
+```code
+python -m test.client
+```
+
+Tests pour la route Commande:
+```code
+python -m test.commande
+```
+
+Tests pour la route Detail des commandes:
+```code
+python -m test.detail_commande
+```
+
+Tests pour la route Objet:
+```code
+python -m test.objet
+```
