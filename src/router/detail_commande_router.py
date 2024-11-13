@@ -6,6 +6,7 @@ from src.schema.detail_commande_schema import (
     DetailBaseSchema,
     DetailInDBSchema,
     DetailUpdateSchema,
+    DetailCreateSchema,
 )
 
 router_detail = APIRouter(prefix="/detail", tags=["Details commande"])
@@ -17,11 +18,11 @@ def get_detail(db: Session = Depends(get_db)):
 
 
 @router_detail.post("/")
-def create_details(detail: DetailBaseSchema, db: Session = Depends(get_db)):
-    return detail
+def create_detail(detail: DetailCreateSchema, db: Session = Depends(get_db)):
+    return controller.create_detail(detail, db)
 
 
-@router_detail.put("/{id}")
+@router_detail.patch("/{id}")
 def update_detail(id: int, detail: DetailUpdateSchema, db: Session = Depends(get_db)):
     return controller.update_detail(id, detail, db)
 
