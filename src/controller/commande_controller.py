@@ -17,23 +17,22 @@ def create_commande(commande: CommandeCreateSchema, db: Session):
 
 
 def update_commande(codcde: int, commande: CommandeUpdateSchema, db: Session):
-    maj_commande = db.query(Commande).filter(Commande.codcde == codcde).first()
-    if not maj_commande:
-        raise HTTPException(status_code=404, detail="Commande non trouvée")
-
-    for key, value in commande.model_dump(exclude_unset=True).items():
-        setattr(maj_commande, key, value)
-
-    db.commit()
-    db.refresh(maj_commande)
-    return maj_commande
+    try:
+        maj_commande = db.query(Commande).filter(Commande.codcde == codcde).first()
+        for key, value in commande.model_dump(exclude_unset=True).items():
+            setattr(maj_commande, key, value)
+        db.commit()
+        db.refresh(maj_commande)
+        return maj_commande
+    except:
+        raise HTTPException(status_code=404, detail={"message": "Commande non trouvée"})
 
 
 def delete_commande(codcde: int, db: Session):
-    del_commande = db.query(Commande).filter(Commande.codcde == codcde).first()
-    if not del_commande:
-        raise HTTPException(status_code=404, detail="Commande non trouvée")
-
-    db.delete(del_commande)
-    db.commit()
-    return del_commande
+    try:
+        del_commande = db.query(Commande).filter(Commande.codcde == codcde).first()
+        db.delete(del_commande)
+        db.commit()
+        return {"message": "Commande supprimée"}
+    except:
+        raise HTTPException(status_code=404, detail={"message": "Commande non trouvée"})

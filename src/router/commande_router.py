@@ -1,16 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from src.controller import commande_controller
-from src.schema.commande_schema import CommandeCreateSchema, CommandeInDBSchema
-from src.database import get_db
-from typing import List
-from src.database import get_db
 from src.controller import commande_controller as controller
 from src.schema.commande_schema import (
-    CommandeBaseSchema,
+    CommandeCreateSchema,
     CommandeInDBSchema,
     CommandeUpdateSchema,
 )
+from src.database import get_db
+from typing import List
+from src.controller import commande_controller as controller
+
 
 router_commande = APIRouter(prefix="/commande", tags=["Commande"])
 
@@ -25,7 +24,7 @@ def create_commande(commande: CommandeCreateSchema, db: Session = Depends(get_db
     return controller.create_commande(commande, db)
 
 
-@router_commande.put("/{codcde}")
+@router_commande.patch("/{codcde}")
 def update_commande(
     codcde: int, commande: CommandeUpdateSchema, db: Session = Depends(get_db)
 ):
