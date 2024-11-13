@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class ObjetBaseSchema(BaseModel):
-    libobj : Optional[str] = None
-    tailleobj : Optional[str] = None
+    libobj : Optional[str] = Field(None, max_length=50) # Optionnel et limité à 50 caractères
+    tailleobj : Optional[str] = Field(None, max_length=50) 
     puobj : Optional[float] = None
     poidsobj : Optional[float] = None
     indispobj : Optional[int] = None
@@ -14,7 +14,8 @@ class ObjetBaseSchema(BaseModel):
     o_ordre_aff : Optional[int] = None
 
 class ObjetCreateSchema(ObjetBaseSchema):
-    libobj: str
+    
+    libobj: str = Field(..., max_length=50) # Obligatoire et limité à 50 caractères
 
 class ObjetUpdateSchema(ObjetBaseSchema):
     pass
