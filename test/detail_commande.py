@@ -21,7 +21,7 @@ class TestDetailCommandeRoute(unittest.TestCase):
         self.assertEqual(reponse.json(), {"message": "API démarrée"})  # bon le json
 
     def test_route_get_detail_commande(self):
-        reponse = self.detail_commande.get("/detail")
+        reponse = self.detail_commande.get("/commande/detail/")
         self.assertEqual(reponse.status_code, 200)
         self.assertIsInstance(reponse.json(), List)
         clés = {
@@ -41,7 +41,7 @@ class TestDetailCommandeRoute(unittest.TestCase):
 
     def test_time_get_detail_commande(self):
         start_time = time.time()
-        self.detail_commande.get("/detail")
+        self.detail_commande.get("/commande/detail/")
         end_time = time.time()
         self.assertTrue(end_time - start_time < 1)
 
@@ -51,7 +51,7 @@ class TestDetailCommandeRoute(unittest.TestCase):
             "qte": 1,
             "colis": 1,
         }
-        reponse = self.detail_commande.post("/detail", json=detailC_data)
+        reponse = self.detail_commande.post("/commande/detail/", json=detailC_data)
         self.assertEqual(reponse.status_code, 200)
         self.assertIsInstance(reponse.json(), Dict)
         clés = {
@@ -62,16 +62,16 @@ class TestDetailCommandeRoute(unittest.TestCase):
             "id",
         }
         self.assertTrue(clés.issubset(reponse.json().keys()))
-        self.detail_commande.delete(f"/detail/{reponse.json()['id']}")
+        self.detail_commande.delete(f"/commande/detail/{reponse.json()['id']}")
 
     def test_charge_create_detail_commande(self):
-        nombre_detailC_avant = len(self.detail_commande.get("/detail").json())
+        nombre_detailC_avant = len(self.detail_commande.get("/commande/detail/").json())
         for _ in range(1000):
             self.detail_commande.post(
-                "/detail",
+                "/commande/detail/",
                 json={"codcde": 2, "qte": 1, "colis": 1},
             )
-        reponse_total = self.detail_commande.get("/detail")
+        reponse_total = self.detail_commande.get("/commande/detail/")
         self.assertEqual(reponse_total.status_code, 200)
         nombre_detailC_apres = len(reponse_total.json())
         detailsC_ajoutes = nombre_detailC_apres - nombre_detailC_avant
@@ -80,33 +80,33 @@ class TestDetailCommandeRoute(unittest.TestCase):
         details = reponse_total.json()
         for detailC in details:
             if detailC["codcde"] == 2 and detailC["colis"] == 1:
-                self.detail_commande.delete(f"/detail/{detailC['id']}")
+                self.detail_commande.delete(f"/commande/detail/{detailC['id']}")
 
     def test_route_delete_detail_commande(self):
 
         reponse_ex = self.detail_commande.post(
-            "/detail/", json={"codcde": 2, "qte": 1, "colis": 1}
+            "/commande/detail/", json={"codcde": 2, "qte": 1, "colis": 1}
         )
         self.detailC_id = reponse_ex.json().get("id")
 
-        reponse = self.detail_commande.delete(f"/detail/{self.detailC_id}")
+        reponse = self.detail_commande.delete(f"/commande/detail/{self.detailC_id}")
         self.assertEqual(reponse.status_code, 200)
 
     def test_delete_detail_not_found(self):
         invalid_detailC_id = 9999999
-        reponse = self.detail_commande.delete(f"/detail/{invalid_detailC_id}")
+        reponse = self.detail_commande.delete(f"/commande/detail/{invalid_detailC_id}")
         self.assertEqual(reponse.status_code, 404)
 
     def test_route_update_detail_commande(self):
         reponse_ex = self.detail_commande.post(
-            "/detail/", json={"codcde": 2, "qte": 1, "colis": 1}
+            "/commande/detail/", json={"codcde": 2, "qte": 1, "colis": 1}
         )
         self.detailC_id = reponse_ex.json().get("id")
 
         update_data = {"codcde": 12}
 
         reponse_update = self.detail_commande.patch(
-            f"/detail/{self.detailC_id}", json=update_data
+            f"/commande/detail/{self.detailC_id}", json=update_data
         )
         self.assertEqual(reponse_update.status_code, 200)
         self.assertIsInstance(reponse_update.json(), Dict)
@@ -120,13 +120,13 @@ class TestDetailCommandeRoute(unittest.TestCase):
         }
         self.assertTrue(clés.issubset(reponse_update.json().keys()))
         self.assertEqual(reponse_update.json().get("codcde"), 12)
-        self.detail_commande.delete(f"/detail/{reponse_update.json()['id']}")
+        self.detail_commande.delete(f"/commande/detail/{reponse_update.json()['id']}")
 
     def test_update_detail_commande_not_found(self):
         invalid_detailC_id = 999999
         update_data = {"codcde": 8}
         reponse_update = self.detail_commande.patch(
-            f"/detail/{invalid_detailC_id}", json=update_data
+            f"/commande/detail/{invalid_detailC_id}", json=update_data
         )
         self.assertEqual(reponse_update.status_code, 404)
 

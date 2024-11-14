@@ -9,7 +9,7 @@ from src.schema.detail_commande_schema import (
     DetailCreateSchema,
 )
 
-router_detail = APIRouter(prefix="/detail", tags=["Details commande"])
+router_detail = APIRouter(prefix="/commande/detail", tags=["Details commande"])
 
 
 @router_detail.get("/")
