@@ -60,7 +60,7 @@ class TestObjetRoute(unittest.TestCase):
             "libobj": "ordi",
         }
         reponse = self.objet.post("/objet", json=objet_data)
-        self.assertEqual(reponse.status_code, 200)
+        self.assertEqual(reponse.status_code, 201)
         self.assertIsInstance(reponse.json(), Dict)
         clés = {
             "libobj",
@@ -104,7 +104,7 @@ class TestObjetRoute(unittest.TestCase):
         self.objet_id = reponse_ex.json().get("codobj")
 
         reponse = self.objet.delete(f"/objet/{self.objet_id}")
-        self.assertEqual(reponse.status_code, 200)
+        self.assertEqual(reponse.status_code, 204)
 
     def test_delete_objet_not_found(self):
         invalid_objet_id = 9999999

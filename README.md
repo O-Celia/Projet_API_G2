@@ -68,6 +68,57 @@ pip install -r requirements.txt
 
 Lancer le fichier create_db.sql sur le serveur MySQL
 
+## Stratégie de tests
+
+1. Niveaux de tests
+
+- **Tests unitaires** : Tests des composants individuels de l'application, tels que les fonctions et méthodes (test de la route *home*, et des requêtes *get*, *create*, *update*, *delete*). 
+- **Tests fonctionnels** : Vérification que les fonctionnalités de l'application répondent aux attentes définies, en se basant sur des critères spécifiques (tests des requêtes *get, *create*, *update*, *delete*).
+- **Tests d'intégration** : Tests visant à s'assurer que les différents modules et composants de l'application fonctionnent correctement ensemble (tests des requêtes *get, *create*, *update*, *delete*).
+- **Tests de performance** : Évaluations de la réactivité et de la charge de l'application pour garantir que l'API peut supporter une utilisation à grande échelle (tests de charge et de temps de réponse).
+
+2. Objectifs des tests
+
+Les objectifs principaux de cette stratégie de tests sont :
+- Vérifier la bonne fonctionnalité de l'application selon les exigences.
+- S'assurer de la stabilité et de la performance de l'API sous diverses charges.
+- Identifier et corriger les anomalies avant la livraison finale.
+
+3. Responsabilités
+
+Les responsabilités concernant les tests sont réparties comme suit :
+- **Développeur** : Écriture des tests unitaires et d'intégration pour les différents endpoints de l'API. Validation de la fonctionnalité des routes GET, POST, PATCH, DELETE.
+- **Testeur/QA** : Exécution des tests de performance (test de charge et test de temps de réponse). Validation des cas d'erreur (404, 500) et de l'interface utilisateur.
+- **Chef de projet** : Suivi de l'avancement des tests, gestion des risques et validation des tests finaux.
+
+4. Tâches principales
+
+Les tâches principales associées aux tests sont :
+- Mise en place des tests unitaires fonctionnels d'intégration pour valider les comportements attendus de fonctionnalité clé de l'application et pour vérifier la communication entre les différents modules et composants.
+- Tests de performance pour évaluer le temps de réponse et la capacité de charge de l'application.
+- Vérification des cas d'erreur pour s'assurer que l'API répond correctement aux situations exceptionnelles.
+
+5. Critères d'entrée et de sortie
+
+### Critères d'entrée
+- Code fonctionnel prêt à être testé.
+- Accès à l'environnement de test.
+- Données de test préparées pour les tests fonctionnels et de performance.
+- Accès aux outils de test nécessaires (frameworks de test comme `unittest`, outils de performance).
+
+### Critères de sortie
+- Tous les tests passent avec succès (tests fonctionnels et non-fonctionnels).
+- Les rapports de tests sont générés, détaillant les résultats et les éventuels bugs ou problèmes.
+- Les performances de l'application sont dans les limites acceptables.
+- Les tests ont couvert les cas de bord, les erreurs possibles, et la charge attendue.
+
+6. Risques
+
+Les risques potentiels associés aux tests incluent :
+- **Risque de non-complétude** : Tous les scénarios de test ne sont peut-être pas couverts.
+- **Problèmes de performance non identifiés** : Le test de charge peut ne pas avoir été réalisé sous des conditions suffisamment extrêmes.
+- **Bugs de dernière minute** : De nouveaux bugs peuvent apparaître au moment de l'intégration des dernières fonctionnalités.
+
 ## Utilisation
 
 Pour utiliser l'application mise en place:
