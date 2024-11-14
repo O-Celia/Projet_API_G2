@@ -1,9 +1,5 @@
 # Projet_API_G2
 
-Projet TP7 : Développement d'une application web
-
-Réalisation d'une refonte du backend de l'application de gestion de Digicheese pour l'accès aux clients, commandes et détails des commandes.
-
 ## Membres
 
 AICHOUNE Wafa <br/>
@@ -15,31 +11,18 @@ ZARDI Yakine
 
 1. Créer un environnement virtuel:
 
-Avec Linux/Mac:
 ```code
 env python -m venv .venv
 ```
-Sur certaines distribution Linus/MAcOS, il faut utiliser *python3*
-
-Avec Windows:
-```code
-python -m venv .venv
-```
-
 **Activer venv:**
 
 Avec Linux/Mac:
 ```code
-source .venv/bin/activate
+source .venv\bin\activate
 ```
-
 Avec Windows: 
 ```code
-.venv\Scripts\activate.ps1
-```
-Dans le cas où les scripts sont désactivés sur le système pour Windows:
-```code
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+.venv\Scripts\activate
 ```
 
 **Pour sortir de l'environnement virtuel:**
