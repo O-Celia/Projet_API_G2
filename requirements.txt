@@ -1,0 +1,12 @@
+fastapi
+sqlalchemy
+pymysql
+uvicorn
+python-dotenv
+pydantic
+unittest
+sys
+os
+httpx
+flask
+time
