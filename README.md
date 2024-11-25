@@ -1,4 +1,6 @@
-# Projet_API_G2
+# Projet API : Développement d'une application informatique 
+
+Refonte SI de la gestion des cadeaux fidélité Fromagerie DIGICHEES
 
 ## Membres
 
